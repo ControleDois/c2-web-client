@@ -16,13 +16,13 @@ export class StorageService {
 
   setAuth(data: any): void {
     localStorage.setItem(
-      'salesforce/auth',
+      'controledois/auth',
       EncryptService.encrypt(JSON.stringify(data))
     );
   }
 
   getAuth(): Auth | null {
-    let localStorageAuth = localStorage.getItem('salesforce/auth');
+    let localStorageAuth = localStorage.getItem('controledois/auth');
     return  localStorageAuth
       ? JSON.parse(EncryptService.decrypt(localStorageAuth))
       : null;

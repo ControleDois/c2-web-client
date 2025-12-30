@@ -18,5 +18,6 @@ export interface People {
   phone_commercial?: string | number;
   phone_cell: string;
   birth: string;
-  address?: PeopleAddress
+  address?: PeopleAddress,
+  certificate_path?: string;
 }

@@ -33,7 +33,7 @@ export class SignIn {
       }),
       map((res: any) => {
         this.storageService.setAuth(res);
-        this.router.navigate(['/dash']);
+        this.router.navigate(['/company-selection']);
       })
     ).subscribe()
   }

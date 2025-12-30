@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user.interface';
 import { ApiService } from './api.service';
+import { StorageService } from './storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +16,8 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
+    private storageService: StorageService,
+    private router: Router
   ) {
     const token = localStorage.getItem('token');
     this.loggedIn.next(!!token);
@@ -28,5 +32,10 @@ export class AuthService {
       email: user.email,
       password: user.password
     }, 'post');
+  }
+
+  logout(): void {
+    this.storageService.clear();
+    this.router.navigate(['/auth/signin']);
   }
 }

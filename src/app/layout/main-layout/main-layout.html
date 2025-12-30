@@ -1,0 +1,17 @@
+<div class="flex h-screen overflow-hidden bg-slate-900">
+
+  <app-sidebar class="hidden md:flex md:w-72 md:flex-col"></app-sidebar>
+
+  <div class="flex flex-1 flex-col overflow-hidden">
+
+    <app-header></app-header>
+
+    <main class="flex-1 overflow-y-auto bg-slate-900 p-8">
+
+      <div class="h-full rounded-2xl border-2 border-dashed border-slate-700 bg-slate-800/30 p-4">
+        <router-outlet></router-outlet>
+      </div>
+
+    </main>
+  </div>
+</div>

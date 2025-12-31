@@ -33,8 +33,8 @@ export class SignIn {
       }),
       map((res: any) => {
         this.storageService.setAuth(res);
-        this.router.navigate(['/company-selection']);
+        this.router.navigate(['/auth/company-selection']);
       })
-    ).subscribe()
+    ).subscribe();
   }
 }

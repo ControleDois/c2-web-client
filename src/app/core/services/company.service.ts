@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { PaginatedResponse } from '../interfaces/api-response.interface';
-import { People } from '../interfaces/people.interface';
 
 @Injectable({ providedIn: 'root' })
 export class CompanyService {

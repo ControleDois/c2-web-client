@@ -1,3 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
-
+/* Importa o Tailwind v4 */
 @import "tailwindcss";
+
+/* 1. Define onde estão seus arquivos HTML/TS para o Tailwind escanear */
+@source "../src";
+
+/* 2. Configura o Dark Mode Manual (Class Strategy) */
+/* Isso sobrescreve o padrão do sistema e diz: "Ative o dark mode quando a classe .dark estiver no HTML" */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 3. Variáveis de Tema (Opcional - Exemplo de como configurar cores na v4) */
+@theme {
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  /* O Tailwind v4 já traz as cores padrão, mas aqui você pode sobrescrever */
+}
+
+/* 4. Estilos Globais do Body */
+body {
+    /* Use as classes utilitárias diretamente */
+    @apply h-full bg-gray-50 text-slate-900 transition-colors duration-300;
+
+    /* Define o estilo para quando o dark mode estiver ativo */
+    @apply dark:bg-slate-900 dark:text-white;
+}

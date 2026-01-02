@@ -1,17 +1,19 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Output } from '@angular/core';
 import { StorageService } from '../../core/services/storage.service';
 import { AuthService } from '../../core/services/auth.service';
 import { Auth } from '../../core/interfaces/auth.interface';
+import { ThemeSwitcher } from '../theme-switcher/theme-switcher';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [ThemeSwitcher],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
   public auth: Auth | null;
+  @Output() toggleMenu = new EventEmitter<void>();
 
   constructor(
     private storageService: StorageService,

@@ -11,4 +11,15 @@ import { Loading } from './shared/components/loading/loading';
 })
 export class App {
   protected readonly title = signal('c2-web-client');
+
+  // Controle do Menu Mobile
+  isMobileMenuOpen = signal(false);
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen.update(v => !v);
+  }
+
+  closeMobileMenu() {
+    this.isMobileMenuOpen.set(false);
+  }
 }

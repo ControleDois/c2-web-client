@@ -1,49 +1,65 @@
-<header class="flex h-16 items-center gap-x-4 border-b border-slate-800 bg-slate-900 px-6 shadow-sm">
+<header class="flex h-16 items-center gap-x-4 border-b bg-white border-slate-200 dark:bg-slate-900 dark:border-slate-800 px-4 shadow-sm transition-colors duration-300 sm:gap-x-6 sm:px-6 lg:px-8">
+
+  <button type="button" (click)="toggleMenu.emit()" class="-m-2.5 p-2.5 text-slate-700 dark:text-white md:hidden">
+    <span class="sr-only">Abrir menu</span>
+    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+  </button>
 
   <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-    <form class="relative flex flex-1" action="#" method="GET">
+    <form class="relative flex flex-1 hidden md:flex" action="#" method="GET">
       <label for="search-field" class="sr-only">Buscar</label>
       <div class="relative w-full max-w-md my-auto">
-        <svg class="pointer-events-none absolute inset-y-0 left-3 h-full w-5 text-slate-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <svg class="pointer-events-none absolute inset-y-0 left-3 h-full w-5 text-slate-400 dark:text-slate-500 transition-colors" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
         </svg>
-        <input id="search-field" class="block h-10 w-full rounded-lg border-0 bg-slate-800 py-0 pl-10 pr-3 text-slate-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm" placeholder="Buscar..." type="search" name="search">
+
+        <input
+          id="search-field"
+          class="block h-10 w-full rounded-lg border-0 py-0 pl-10 pr-3 sm:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors
+                 bg-gray-100 text-slate-900 placeholder:text-slate-400
+                 dark:bg-slate-800 dark:text-slate-300 dark:placeholder:text-slate-500"
+          placeholder="Buscar..."
+          type="search"
+          name="search">
       </div>
     </form>
+
+    <div class="flex flex-1 md:hidden"></div>
   </div>
 
   <div class="flex items-center gap-x-4 lg:gap-x-6">
 
     <div class="hidden md:flex flex-col items-end mr-2">
-      <span class="text-xs text-slate-500">{{auth?.company?.people?.document}}</span>
-      <span class="text-sm font-semibold text-slate-200">{{auth?.company?.people?.name}}</span>
+      <span class="text-xs text-slate-500 dark:text-slate-500">{{auth?.company?.people?.document}}</span>
+      <span class="text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors">{{auth?.company?.people?.name}}</span>
     </div>
 
-    <div class="h-6 w-px bg-slate-700" aria-hidden="true"></div>
+    <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 transition-colors hidden md:block" aria-hidden="true"></div>
+
+    <div class="flex flex-col items-end mr-2">
+      <app-theme-switcher></app-theme-switcher>
+    </div>
+
+    <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 transition-colors" aria-hidden="true"></div>
 
     <el-dropdown class="relative ml-3">
-      <button slot="trigger" class="group flex items-center gap-x-1 rounded-full p-1.5 text-sm font-semibold leading-6 text-white hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-
-        <span class="sr-only">Open user menu</span>
-
-        <img class="h-8 w-8 rounded-full bg-slate-800 object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-
-        <span class="hidden lg:flex lg:items-center">
-
-          <span class="ml-2 text-sm font-semibold leading-6 text-white" aria-hidden="true">{{auth?.user?.people?.name}}</span>
-
-          <svg class="ml-2 h-5 w-5 text-gray-400 group-hover:text-white transition-colors" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-          </svg>
-        </span>
-
-      </button>
-
-      <el-menu anchor="bottom end" popover class="w-48 origin-top-right rounded-md bg-gray-800 py-1 outline -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-        <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:outline-hidden">Your profile</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:outline-hidden">Settings</a>
-        <a (click)="logout()" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:outline-hidden cursor-pointer">Sign out</a>
-      </el-menu>
+        <button slot="trigger" class="group flex items-center gap-x-1 rounded-full p-1.5 text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 transition-colors text-slate-700 hover:bg-gray-100 dark:text-white dark:hover:bg-slate-800">
+            <span class="sr-only">Open user menu</span>
+            <img class="h-8 w-8 rounded-full object-cover bg-slate-100 dark:bg-slate-800" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+            <span class="hidden lg:flex lg:items-center">
+            <span class="ml-2 text-sm font-semibold leading-6 text-slate-700 dark:text-white transition-colors" aria-hidden="true">{{auth?.user?.people?.name}}</span>
+            <svg class="ml-2 h-5 w-5 text-slate-400 group-hover:text-slate-600 dark:text-gray-400 dark:group-hover:text-white transition-colors" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+            </span>
+        </button>
+        <el-menu anchor="bottom end" popover class="w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 transition transition-discrete bg-white ring-slate-200 dark:bg-slate-800 dark:ring-white/10">
+            <a href="#" class="block px-4 py-2 text-sm transition-colors text-slate-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-slate-700">Your profile</a>
+            <a href="#" class="block px-4 py-2 text-sm transition-colors text-slate-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-slate-700">Settings</a>
+            <a (click)="logout()" class="block px-4 py-2 text-sm transition-colors cursor-pointer text-slate-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-slate-700">Sign out</a>
+        </el-menu>
     </el-dropdown>
   </div>
 </header>

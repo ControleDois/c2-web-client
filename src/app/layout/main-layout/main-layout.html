@@ -1,17 +1,36 @@
-<div class="flex h-screen overflow-hidden bg-slate-900">
+<div class="flex h-screen overflow-hidden dark:bg-slate-900">
 
-  <app-sidebar class="hidden md:flex md:w-72 md:flex-col"></app-sidebar>
+  <div *ngIf="sidebarOpen" class="relative z-50 md:hidden" role="dialog" aria-modal="true">
+
+    <div class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity" (click)="sidebarOpen = false"></div>
+
+    <div class="fixed inset-0 flex">
+      <div class="relative mr-16 flex w-full max-w-xs flex-1">
+
+        <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+          <button type="button" class="-m-2.5 p-2.5 text-white" (click)="sidebarOpen = false">
+            <span class="sr-only">Fechar menu</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <app-sidebar class="flex w-full flex-col h-full"></app-sidebar>
+
+      </div>
+    </div>
+  </div>
+
+  <app-sidebar class="hidden md:flex md:w-72 md:flex-col fixed md:relative h-full z-10"></app-sidebar>
 
   <div class="flex flex-1 flex-col overflow-hidden">
 
-    <app-header></app-header>
+    <app-header (toggleMenu)="sidebarOpen = true"></app-header>
 
-    <main class="flex-1 overflow-y-auto bg-slate-900 p-8">
-
-      <div class="h-full">
+    <main class="flex-1 overflow-y-auto dark:bg-slate-900 p-4 md:p-8"> <div class="h-full">
         <router-outlet></router-outlet>
       </div>
-
     </main>
   </div>
 </div>

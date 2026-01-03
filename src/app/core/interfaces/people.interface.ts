@@ -3,6 +3,7 @@ import { PeopleAddress } from './people.address.interface';
 export interface People {
   id: string;
   company_id: string;
+  roles: number[];
   name: string;
   role: number;
   social_name: string;

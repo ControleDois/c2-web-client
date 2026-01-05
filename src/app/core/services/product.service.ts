@@ -1,0 +1,48 @@
+import { HttpParams } from '@angular/common/http';
+import { ApiService } from './api.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+  private resource = 'product';
+
+  constructor(
+    private apiService: ApiService
+  ) { }
+
+  index(search: string, sorteBy?: string, orderBy?: string, page?: string, limit?: string, tributation?: boolean, skipLoading: boolean = false): Observable<any> {
+    const params = new HttpParams()
+      .set('role', '0')
+      .set('search', search)
+      .set('sortedBy', sorteBy || 'name')
+      .set('orderBy', orderBy || 'name')
+      .set('page', page || '1')
+      .set('limit', limit || '10')
+      .set('tributation', tributation || false);
+
+    return this.apiService.on(this.resource, '', 'get-token-params', params, skipLoading);
+  }
+
+  store(body: Object): Observable<any> {
+    return this.apiService.on(`${this.resource}`, body, 'post-token');
+  }
+
+  show(id: string): Observable<any> {
+    return this.apiService.on(`${this.resource}/${id}`, '', 'get-token');
+  }
+
+  update(id: string, body: Object): Observable<any> {
+    return this.apiService.on(`${this.resource}/${id}`, body, 'put-token');
+  }
+
+  destroy(id: string): Observable<any> {
+    return this.apiService.on(`${this.resource}/${id}`, '', 'delete-token');
+  }
+
+  save(id: string, body: Object): Observable<any>  {
+    return id === 'new' ? this.store(body) : this.update(id, body);
+  }
+}

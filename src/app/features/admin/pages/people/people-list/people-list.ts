@@ -2,14 +2,16 @@ import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/c
 import { PeopleService } from '../../../../../core/services/people.service';
 import { People } from '../../../../../core/interfaces/people.interface';
 import { MetaData } from '../../../../../core/interfaces/api-response.interface';
-import { map } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, finalize, map, throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CpfCnpjPipe } from '../../../../../shared/pipes/cpf-cnpj.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ConfirmModal } from '../../../../../shared/components/confirm-modal/confirm-modal';
 
 @Component({
   selector: 'app-people-list',
-  imports: [CommonModule, CpfCnpjPipe, FormsModule],
+  imports: [CommonModule, CpfCnpjPipe, FormsModule, ReactiveFormsModule, RouterModule, ConfirmModal],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './people-list.html',
   styleUrl: './people-list.css',
@@ -26,15 +28,15 @@ export class PeopleList {
 
   // Opções do Filtro
   filterOptions = [
-    { id: 'usuario', label: 'Usuário', checked: false },
-    { id: 'empresa', label: 'Empresa', checked: false },
-    { id: 'cliente', label: 'Cliente', checked: true }, // Exemplo: padrão marcado
-    { id: 'fornecedor', label: 'Fornecedor', checked: false },
-    { id: 'transportadora', label: 'Transportadora', checked: false },
+    { id: '0', label: 'Usuário', checked: false },
+    { id: '1', label: 'Empresa', checked: false },
+    { id: '2', label: 'Cliente', checked: false },
+    { id: '3', label: 'Fornecedor', checked: false },
+    { id: '4', label: 'Transportadora', checked: false },
   ];
 
   // Variável da busca
-  searchTerm = '';
+  public searchTerm = new FormControl('');
 
   // Configuração dos papéis (ID -> Texto e Cores)
   roleConfigs: any = {
@@ -45,22 +47,45 @@ export class PeopleList {
     4: { label: 'Transportador',css: 'bg-orange-50 text-orange-700 ring-orange-600/20 dark:bg-orange-400/10 dark:text-orange-400 dark:ring-orange-400/20' }
   };
 
+  // Controle do Modal
+  isModalOpen = false;
+  modalConfig = {
+    title: '',
+    message: '',
+    confirmText: '',
+    cancelText: 'Cancelar',
+    type: 'danger' as 'danger' | 'info' | 'success',
+    action: () => {}
+  };
+
   constructor(
     private peopleService: PeopleService,
     private cdr: ChangeDetectorRef,
   ) {
   }
 
-
   ngOnInit() {
+    this.searchTerm.valueChanges
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        map(() => {
+          this.loadData(1);
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe();
+
     this.loadData(1);
   }
 
   loadData(page: number) {
     this.isLoading = true;
 
-    this.peopleService.index('',
-      'name', 'name', page.toString(),'10', [], true).pipe(
+    let paramRoles = {param: 'roles', value: `{${this.filterOptions.filter(option => option.checked).map(option => option.id)}}`};
+
+    this.peopleService.index(this.searchTerm.value ? this.searchTerm.value : '',
+      'name', 'name', page.toString(),'10', [paramRoles], true).pipe(
         map(res => {
           this.people = res.data;
           this.meta = res.meta;
@@ -90,5 +115,39 @@ export class PeopleList {
   // Função auxiliar para evitar erros se vier um ID desconhecido
   getRoleData(roleId: number) {
     return this.roleConfigs[roleId] || { label: 'Desconhecido', css: 'bg-gray-50 text-gray-600 ring-gray-500/10' };
+  }
+
+  onFilterChange() {
+    // Volta para a página 1 sempre que mudar o filtro
+    this.loadData(1);
+  }
+
+  openDeleteModal(person: any) {
+    this.modalConfig = {
+      title: 'Excluir Pessoa',
+      message: `Tem certeza que deseja excluir ${person.name}? Essa ação não pode ser desfeita.`,
+      confirmText: 'Excluir',
+      cancelText: 'Cancelar',
+      type: 'danger',
+      action: () => {
+        this.isLoading = true;
+        this.peopleService.destroy(person.id).pipe(
+          finalize(() => this.isLoading = false),
+          catchError((error) => {
+            return throwError(error);
+          }),
+          map(() => {
+            this.loadData(1);
+            this.cdr.detectChanges;
+          })
+        ).subscribe();
+      }
+    };
+    this.isModalOpen = true;
+  }
+
+  onModalConfirm() {
+    this.modalConfig.action(); // Executa a função guardada
+    this.isModalOpen = false;  // Fecha
   }
 }

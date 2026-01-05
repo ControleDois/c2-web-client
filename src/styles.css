@@ -1,6 +1,8 @@
 /* Importa o Tailwind v4 */
 @import "tailwindcss";
 
+@plugin "@tailwindcss/forms";
+
 /* 1. Define onde estão seus arquivos HTML/TS para o Tailwind escanear */
 @source "../src";
 

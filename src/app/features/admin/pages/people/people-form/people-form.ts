@@ -158,7 +158,7 @@ export class PeopleForm implements OnInit{
     private toast: ToastService,
     private peopleService: PeopleService,
     private router: Router,
-    private dropboxService: DropboxService
+    private dropboxService: DropboxService,
   ) {
     this.formId = this.activatedRoute.snapshot.params['id'];
   }
@@ -181,6 +181,11 @@ export class PeopleForm implements OnInit{
   setForm(value: any): void {
     if (value) {
       this.myForm.patchValue(value);
+
+      if (value.birth) {
+        const dateBirth = value.birth.toString().split('T')[0];
+        this.myForm.controls['birth'].setValue(dateBirth);
+      }
 
 
       // if (value.keys && value.keys.length > 0) {

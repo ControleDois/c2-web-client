@@ -11,6 +11,8 @@ import { CategoryList } from './pages/category/category-list/category-list';
 import { CategoryForm } from './pages/category/category-form/category-form';
 import { CostCenterList } from './pages/cost-center/cost-center-list/cost-center-list';
 import { CostCenterForm } from './pages/cost-center/cost-center-form/cost-center-form';
+import { ContactList } from './pages/contact/contact-list/contact-list';
+import { ContactForm } from './pages/contact/contact-form/contact-form';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dash', pathMatch: 'full' },
@@ -34,5 +36,9 @@ export const routes: Routes = [
   { path: 'cost-center', data: { title: 'Centro de Custo' }, children: [
     { path: '', component: CostCenterList, data: { title: null} },
     { path: ':id', component: CostCenterForm, resolve: { title: appTitleResolver }, data: { entityName: 'Centro de Custo' }}
+  ]},
+  { path: 'contact', data: { title: 'Contatos' }, children: [
+    { path: '', component: ContactList, data: { title: null} },
+    { path: ':id', component: ContactForm, resolve: { title: appTitleResolver }, data: { entityName: 'Contatos' }}
   ]}
 ];

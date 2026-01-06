@@ -5,6 +5,8 @@ import { PeopleForm } from './pages/people/people-form/people-form';
 import { appTitleResolver } from '../../core/resolvers/app-title.resolver';
 import { ProductList } from './pages/product/product-list/product-list';
 import { ProductForm } from './pages/product/product-form/product-form';
+import { ServiceList } from './pages/service/service-list/service-list';
+import { ServiceForm } from './pages/service/service-form/service-form';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dash', pathMatch: 'full' },
@@ -16,5 +18,9 @@ export const routes: Routes = [
   { path: 'product', data: { title: 'Produtos' }, children: [
     { path: '', component: ProductList, data: { title: null} },
     { path: ':id', component: ProductForm, resolve: { title: appTitleResolver }, data: { entityName: 'Produtos' }}
+  ]},
+  { path: 'service', data: { title: 'Serviços' }, children: [
+    { path: '', component: ServiceList, data: { title: null} },
+    { path: ':id', component: ServiceForm, resolve: { title: appTitleResolver }, data: { entityName: 'Serviços' }}
   ]}
 ];

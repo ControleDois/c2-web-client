@@ -217,13 +217,13 @@ export class ProductForm implements OnInit {
   }
 
   nextTab() {
-    const tabs = ['dados', 'fiscal', 'endereco', 'observacao'];
+    const tabs = ['dados'];
     const i = tabs.indexOf(this.activeTab);
     if (i < tabs.length - 1) this.activeTab = tabs[i + 1];
   }
 
   prevTab() {
-    const tabs = ['dados', 'fiscal', 'endereco', 'observacao'];
+    const tabs = ['dados'];
     const i = tabs.indexOf(this.activeTab);
     if (i > 0) this.activeTab = tabs[i - 1];
   }

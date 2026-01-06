@@ -57,6 +57,7 @@
 
     <a *ngIf="!item.children"
        [routerLink]="item.route"
+       (click)="navigate.emit()"
        routerLinkActive="bg-gray-50 text-indigo-600 dark:bg-slate-800 dark:text-white"
        [style.padding-left.rem]="0.75 + (level * 1)"
        class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-colors

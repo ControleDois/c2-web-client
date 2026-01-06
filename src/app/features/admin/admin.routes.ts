@@ -13,6 +13,10 @@ import { CostCenterList } from './pages/cost-center/cost-center-list/cost-center
 import { CostCenterForm } from './pages/cost-center/cost-center-form/cost-center-form';
 import { ContactList } from './pages/contact/contact-list/contact-list';
 import { ContactForm } from './pages/contact/contact-form/contact-form';
+import { BankList } from './pages/bank/bank-list/bank-list';
+import { BankForm } from './pages/bank/bank-form/bank-form';
+import { BillReceivementList } from './pages/bill-receivement/bill-receivement-list/bill-receivement-list';
+import { BillReceivementForm } from './pages/bill-receivement/bill-receivement-form/bill-receivement-form';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dash', pathMatch: 'full' },
@@ -40,5 +44,13 @@ export const routes: Routes = [
   { path: 'contact', data: { title: 'Contatos' }, children: [
     { path: '', component: ContactList, data: { title: null} },
     { path: ':id', component: ContactForm, resolve: { title: appTitleResolver }, data: { entityName: 'Contatos' }}
-  ]}
+  ]},
+  { path: 'bank', data: { title: 'Bancos' }, children: [
+    { path: '', component: BankList, data: { title: null} },
+    { path: ':id', component: BankForm, resolve: { title: appTitleResolver }, data: { entityName: 'Bancos' }}
+  ]},
+  { path: 'bill-receivement', data: { title: 'Contas a Receber' }, children: [
+    { path: '', component: BillReceivementList, data: { title: null} },
+    { path: ':id', component: BillReceivementForm, resolve: { title: appTitleResolver }, data: { entityName: 'Contas a Receber' }}
+  ]},
 ];

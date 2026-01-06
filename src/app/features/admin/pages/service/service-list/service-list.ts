@@ -15,7 +15,7 @@ import { ConfirmModal } from '../../../../../shared/components/confirm-modal/con
 })
 export class ServiceList {
   protected Math = Math;
-  services: any[] = [];
+  list: any[] = [];
   meta: MetaData | null = null;
   isLoading = true;
 
@@ -59,7 +59,7 @@ export class ServiceList {
     this.serviceService.index(this.searchTerm.value ? this.searchTerm.value : '',
       'name', 'name', page.toString(),'10', true).pipe(
         map(res => {
-          this.services = res.data;
+          this.list = res.data;
           this.meta = res.meta;
           this.isLoading = false;
           this.cdr.detectChanges();

@@ -422,12 +422,10 @@ export class PeopleForm implements OnInit{
     }
   }
 
-  // Função para mudar aba
   setTab(tab: string) {
     this.activeTab = tab;
   }
 
-  // Navegação pelos botões inferiores
   nextTab() {
     const tabs = ['dados', 'fiscal', 'endereco', 'observacao'];
     const i = tabs.indexOf(this.activeTab);

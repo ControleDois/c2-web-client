@@ -7,11 +7,10 @@ import { catchError, debounceTime, distinctUntilChanged, finalize, map, throwErr
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ConfirmModal } from '../../../../../shared/components/confirm-modal/confirm-modal';
-import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ConfirmModal, NgxCurrencyDirective],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ConfirmModal],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',

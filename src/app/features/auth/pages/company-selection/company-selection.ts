@@ -13,7 +13,6 @@ import { AuthService } from '../../../../core/services/auth.service';
   selector: 'app-company-selection',
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './company-selection.html',
-  styleUrl: './company-selection.css',
 })
 export class CompanySelection implements OnInit {
   public companies: People[] = [];

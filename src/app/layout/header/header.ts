@@ -9,7 +9,6 @@ import { ThemeSwitcher } from '../theme-switcher/theme-switcher';
   imports: [ThemeSwitcher],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './header.html',
-  styleUrl: './header.css',
 })
 export class Header {
   public auth: Auth | null;

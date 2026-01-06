@@ -13,7 +13,6 @@ import { ConfirmModal } from '../../../../../shared/components/confirm-modal/con
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ConfirmModal],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './product-list.html',
-  styleUrl: './product-list.css',
 })
 export class ProductList implements OnInit {
   protected Math = Math;

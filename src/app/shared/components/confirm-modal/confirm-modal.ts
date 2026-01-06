@@ -9,7 +9,6 @@ export type ModalType = 'danger' | 'success' | 'info';
   selector: 'app-confirm-modal',
   imports: [CommonModule],
   templateUrl: './confirm-modal.html',
-  styleUrl: './confirm-modal.css',
   animations: [
     // Animação do Fundo Escuro (Backdrop)
     trigger('backdrop', [

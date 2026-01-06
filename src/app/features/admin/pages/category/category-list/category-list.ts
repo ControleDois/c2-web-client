@@ -12,7 +12,6 @@ import { catchError, debounceTime, distinctUntilChanged, finalize, map, throwErr
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ConfirmModal],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './category-list.html',
-  styleUrl: './category-list.css',
 })
 export class CategoryList {
   protected Math = Math;
@@ -105,7 +104,7 @@ export class CategoryList {
   }
 
   onModalConfirm() {
-    this.modalConfig.action(); // Executa a função guardada
-    this.isModalOpen = false;  // Fecha
+    this.modalConfig.action();
+    this.isModalOpen = false;
   }
 }

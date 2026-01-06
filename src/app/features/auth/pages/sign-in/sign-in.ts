@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   selector: 'app-sign-in',
   imports: [ReactiveFormsModule],
   templateUrl: './sign-in.html',
-  styleUrl: './sign-in.css',
 })
 export class SignIn {
   public myForm: FormGroup = new FormGroup({

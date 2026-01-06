@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-theme-switcher',
   imports: [CommonModule],
   templateUrl: './theme-switcher.html',
-  styleUrl: './theme-switcher.css',
 })
 export class ThemeSwitcher {
 

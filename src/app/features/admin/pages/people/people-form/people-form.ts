@@ -15,7 +15,6 @@ import { SearchLoadingUniqueInterface } from '../../../../../core/interfaces/sea
   selector: 'app-people-form',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, NgxMaskDirective, SearchLoadingUnique],
   templateUrl: './people-form.html',
-  styleUrl: './people-form.css',
 })
 export class PeopleForm implements OnInit{
   private formId: string;

@@ -12,11 +12,9 @@ import { SearchLoadingUnique } from '../../../../../shared/components/search-loa
   selector: 'app-category-form',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, SearchLoadingUnique],
   templateUrl: './category-form.html',
-  styleUrl: './category-form.css',
 })
 export class CategoryForm {
   private formId: string;
-  activeTab: string = 'dados';
 
   public myForm: FormGroup = new FormGroup({
     id: new FormControl(0),
@@ -119,22 +117,6 @@ export class CategoryForm {
         category_id: null
       });
     }
-  }
-
-  setTab(tab: string) {
-    this.activeTab = tab;
-  }
-
-  nextTab() {
-    const tabs = ['dados'];
-    const i = tabs.indexOf(this.activeTab);
-    if (i < tabs.length - 1) this.activeTab = tabs[i + 1];
-  }
-
-  prevTab() {
-    const tabs = ['dados'];
-    const i = tabs.indexOf(this.activeTab);
-    if (i > 0) this.activeTab = tabs[i - 1];
   }
 
   getRole(): void {

@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-loading',
   imports: [CommonModule],
   templateUrl: './loading.html',
-  styleUrl: './loading.css',
 })
 export class Loading {
   constructor(public loadingService: LoadingService) {}

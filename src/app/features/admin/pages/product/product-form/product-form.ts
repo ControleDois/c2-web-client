@@ -13,7 +13,6 @@ import { NgxCurrencyDirective } from 'ngx-currency';
   selector: 'app-product-form',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, SearchLoadingUnique, NgxCurrencyDirective],
   templateUrl: './product-form.html',
-  styleUrl: './product-form.css',
 })
 export class ProductForm implements OnInit {
   private formId: string;

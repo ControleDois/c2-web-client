@@ -14,7 +14,6 @@ import { ConfirmModal } from '../../../../../shared/components/confirm-modal/con
   imports: [CommonModule, CpfCnpjPipe, FormsModule, ReactiveFormsModule, RouterModule, ConfirmModal],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './people-list.html',
-  styleUrl: './people-list.css',
 })
 export class PeopleList {
 

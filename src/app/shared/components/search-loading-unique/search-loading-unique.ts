@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-search-loading-unique',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './search-loading-unique.html',
-  styleUrl: './search-loading-unique.css',
 })
 export class SearchLoadingUnique {
   @Input() public search!: SearchLoadingUniqueInterface;

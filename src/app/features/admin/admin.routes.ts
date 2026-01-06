@@ -9,6 +9,8 @@ import { ServiceList } from './pages/service/service-list/service-list';
 import { ServiceForm } from './pages/service/service-form/service-form';
 import { CategoryList } from './pages/category/category-list/category-list';
 import { CategoryForm } from './pages/category/category-form/category-form';
+import { CostCenterList } from './pages/cost-center/cost-center-list/cost-center-list';
+import { CostCenterForm } from './pages/cost-center/cost-center-form/cost-center-form';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dash', pathMatch: 'full' },
@@ -28,5 +30,9 @@ export const routes: Routes = [
   { path: 'category', data: { title: 'Categorias' }, children: [
     { path: '', component: CategoryList, data: { title: null} },
     { path: ':id', component: CategoryForm, resolve: { title: appTitleResolver }, data: { entityName: 'Categorias' }}
+  ]},
+  { path: 'cost-center', data: { title: 'Centro de Custo' }, children: [
+    { path: '', component: CostCenterList, data: { title: null} },
+    { path: ':id', component: CostCenterForm, resolve: { title: appTitleResolver }, data: { entityName: 'Centro de Custo' }}
   ]}
 ];

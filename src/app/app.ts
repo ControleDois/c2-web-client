@@ -7,7 +7,6 @@ import { Loading } from './shared/components/loading/loading';
   selector: 'app-root',
   imports: [RouterOutlet, ToastComponent, Loading],
   templateUrl: './app.html',
-  styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('c2-web-client');

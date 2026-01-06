@@ -9,7 +9,6 @@ import { Breadcrumb } from '../breadcrumb/breadcrumb';
   selector: 'app-main-layout',
   imports: [CommonModule, Header, Sidebar, RouterOutlet, Breadcrumb],
   templateUrl: './main-layout.html',
-  styleUrl: './main-layout.css',
 })
 export class MainLayout {
   sidebarOpen = false;

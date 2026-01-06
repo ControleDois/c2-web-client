@@ -8,7 +8,6 @@ import { BreadcrumbItem } from '../../core/interfaces/breadcrumb.interface';
   selector: 'app-breadcrumb',
   imports: [CommonModule, RouterModule],
   templateUrl: './breadcrumb.html',
-  styleUrl: './breadcrumb.css',
 })
 export class Breadcrumb {
   breadcrumbs: BreadcrumbItem[] = [];

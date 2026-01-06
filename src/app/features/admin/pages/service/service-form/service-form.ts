@@ -11,11 +11,9 @@ import { NgxCurrencyDirective } from 'ngx-currency';
   selector: 'app-service-form',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, NgxCurrencyDirective],
   templateUrl: './service-form.html',
-  styleUrl: './service-form.css',
 })
 export class ServiceForm {
   private formId: string;
-  public activeTab: string = 'dados';
 
   public myForm: FormGroup = new FormGroup({
     id: new FormControl(0),
@@ -88,21 +86,5 @@ export class ServiceForm {
     } else {
       this.toast.warning('Campos inválidos', 'Existem campos a serem preenchidos corretamente.')
     }
-  }
-
-  setTab(tab: string) {
-    this.activeTab = tab;
-  }
-
-  nextTab() {
-    const tabs = ['dados'];
-    const i = tabs.indexOf(this.activeTab);
-    if (i < tabs.length - 1) this.activeTab = tabs[i + 1];
-  }
-
-  prevTab() {
-    const tabs = ['dados'];
-    const i = tabs.indexOf(this.activeTab);
-    if (i > 0) this.activeTab = tabs[i - 1];
   }
 }

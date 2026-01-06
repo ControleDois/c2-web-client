@@ -21,7 +21,7 @@ export class CategoryService {
       .set('page', page || '1')
       .set('limit', limit || '10');
 
-    return this.apiService.on(this.resource, '', 'get-token-params', params);
+    return this.apiService.on(this.resource, '', 'get-token-params', params, skipLoading);
   }
 
   store(body: Object): Observable<any> {

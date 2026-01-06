@@ -12,7 +12,6 @@ import { ConfirmModal } from '../../../../../shared/components/confirm-modal/con
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ConfirmModal],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './service-list.html',
-  styleUrl: './service-list.css',
 })
 export class ServiceList {
   protected Math = Math;

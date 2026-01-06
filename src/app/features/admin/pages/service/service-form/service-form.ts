@@ -15,8 +15,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 })
 export class ServiceForm {
   private formId: string;
-
-  activeTab: string = 'dados';
+  public activeTab: string = 'dados';
 
   public myForm: FormGroup = new FormGroup({
     id: new FormControl(0),

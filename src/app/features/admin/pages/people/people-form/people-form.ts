@@ -19,8 +19,7 @@ import { SearchLoadingUniqueInterface } from '../../../../../core/interfaces/sea
 export class PeopleForm implements OnInit{
   private formId: string;
 
-  // Controle de Abas
-  activeTab: string = 'dados'; // 'dados' | 'fiscal' | 'endereco' | 'observacao'
+  activeTab: string = 'dados';
 
   vehicles: any[] = [
     { brand: '', model: '', year: '', plate: '' }

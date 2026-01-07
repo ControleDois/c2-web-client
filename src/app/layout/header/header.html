@@ -14,34 +14,37 @@
         <svg class="pointer-events-none absolute inset-y-0 left-3 h-full w-5 text-slate-400 dark:text-slate-500 transition-colors" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
         </svg>
-
-        <input
-          id="search-field"
-          class="block h-10 w-full rounded-lg border-0 py-0 pl-10 pr-3 sm:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors
-                 bg-gray-100 text-slate-900 placeholder:text-slate-400
-                 dark:bg-slate-800 dark:text-slate-300 dark:placeholder:text-slate-500"
-          placeholder="Buscar..."
-          type="search"
-          name="search">
+        <input id="search-field" class="block h-10 w-full rounded-lg border-0 py-0 pl-10 pr-3 sm:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors bg-gray-100 text-slate-900 placeholder:text-slate-400 dark:bg-slate-800 dark:text-slate-300 dark:placeholder:text-slate-500" placeholder="Buscar..." type="search" name="search">
       </div>
     </form>
-
     <div class="flex flex-1 md:hidden"></div>
   </div>
 
   <div class="flex items-center gap-x-4 lg:gap-x-6">
 
-    <div class="hidden md:flex flex-col items-end mr-2">
-      <span class="text-xs text-slate-500 dark:text-slate-500">{{auth?.company?.people?.document}}</span>
-      <span class="text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors">{{auth?.company?.people?.name}}</span>
-    </div>
-
-    <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 transition-colors hidden md:block" aria-hidden="true"></div>
-
     <div class="flex flex-col items-end mr-2">
       <app-theme-switcher></app-theme-switcher>
     </div>
 
+    <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 transition-colors hidden md:block" aria-hidden="true"></div>
+
+    <div class="flex items-center gap-3 mr-2">
+
+      <div class="hidden md:flex flex-col items-end">
+        <span class="text-xs text-slate-500 dark:text-slate-500">{{auth?.company?.people?.document}}</span>
+        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors">{{auth?.company?.people?.name}}</span>
+      </div>
+
+      <button routerLink="auth/company-selection"
+              type="button"
+              title="Trocar de empresa"
+              class="rounded-full p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-slate-100 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-white transition-all">
+          <span class="sr-only">Trocar empresa</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+          </svg>
+      </button>
+    </div>
     <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 transition-colors" aria-hidden="true"></div>
 
     <el-dropdown class="relative ml-3">

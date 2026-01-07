@@ -3,10 +3,11 @@ import { StorageService } from '../../core/services/storage.service';
 import { AuthService } from '../../core/services/auth.service';
 import { Auth } from '../../core/interfaces/auth.interface';
 import { ThemeSwitcher } from '../theme-switcher/theme-switcher';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-header',
-  imports: [ThemeSwitcher],
+  imports: [ThemeSwitcher, RouterLink],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './header.html',
 })

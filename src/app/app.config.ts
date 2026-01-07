@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideEnvironmentNgxMask(),
     provideEnvironmentNgxCurrency({
       align: "left",
-      allowNegative: true,
+      allowNegative: false,
       allowZero: true,
       decimal: ",",
       precision: 2,

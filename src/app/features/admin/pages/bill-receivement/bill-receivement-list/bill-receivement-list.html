@@ -102,10 +102,10 @@
                class="absolute top-0 left-0 right-0 bg-red-500 transition-all duration-300"></div>
 
           <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">
-            Em atraso ({{ financialSummary.late.count }})
+            Em atraso ({{ getTotalAmountDateDueQtd() }})
           </dt>
           <dd class="mt-1 text-xl font-bold tracking-tight text-red-500">
-            {{ financialSummary.late.value | currency:'BRL' }}
+            {{ getTotalAmountDateDue() | currency:'BRL' }}
           </dd>
 
           <div class="hidden md:flex absolute top-1/2 -right-3 -mt-3 h-6 w-6 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400 z-10 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-500">
@@ -124,10 +124,10 @@
                class="absolute top-0 left-0 right-0 bg-blue-500 transition-all duration-300"></div>
 
           <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">
-            A receber ({{ financialSummary.receivable.count }})
+            A receber ({{ getTotalAmountQtd() }})
           </dt>
           <dd class="mt-1 text-xl font-bold tracking-tight text-blue-500">
-            {{ financialSummary.receivable.value | currency:'BRL' }}
+            {{ getTotalAmount() | currency:'BRL' }}
           </dd>
 
           <div class="hidden md:flex absolute top-1/2 -right-3 -mt-3 h-6 w-6 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400 z-10 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-500">
@@ -146,10 +146,10 @@
                class="absolute top-0 left-0 right-0 bg-emerald-500 transition-all duration-300"></div>
 
           <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">
-            Recebido ({{ financialSummary.received.count }})
+            Recebido ({{ getTotalBillValueQtd() }})
           </dt>
           <dd class="mt-1 text-xl font-bold tracking-tight text-emerald-500">
-            {{ financialSummary.received.value | currency:'BRL' }}
+            {{ getTotalBillValue() | currency:'BRL' }}
           </dd>
 
           <div class="hidden md:flex absolute top-1/2 -right-3 -mt-3 h-6 w-6 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400 z-10 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-500">
@@ -170,10 +170,10 @@
                class="absolute top-0 left-0 right-0 bg-slate-500 transition-all duration-300"></div>
 
           <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">
-            Total ({{ financialSummary.total.count }})
+            Total ({{ getTotalBill() }})
           </dt>
           <dd class="mt-1 text-xl font-bold tracking-tight text-slate-700 dark:text-slate-200">
-            {{ financialSummary.total.value | currency:'BRL' }}
+            {{ getTotal() | currency:'BRL' }}
           </dd>
         </div>
 
@@ -208,6 +208,7 @@
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white transition-colors">Descrição</th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white transition-colors">Cliente</th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white transition-colors">Valor</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white transition-colors"></th>
                   <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                     <span class="sr-only">Opções</span>
                   </th>
@@ -232,7 +233,7 @@
                     <div class="flex items-center">
                       <div>
                         <div class="font-medium text-slate-900 dark:text-white transition-colors text-base sm:text-sm">
-                            {{ item.code }}
+                          {{item.status === 0 ? item.date_due.split('T')[0] : item.date_received.split('T')[0] }}
                         </div>
 
                         <dl class="font-normal lg:hidden mt-1">
@@ -241,16 +242,41 @@
                             {{ item.name }}
                           </dd>
                         </dl>
+
+                        <dl class="font-normal lg:hidden mt-1">
+                          <dt class="sr-only">Nome</dt>
+                          <dd class="mt-1 truncate text-slate-500 dark:text-slate-400 font-mono text-xs">
+                            <span
+                              class="inline-flex items-center gap-x-1.5 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset"
+                              [ngClass]="formPaymentList[item.form_payment].styles">
+
+                              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      [attr.d]="formPaymentList[item.form_payment].icon" />
+                              </svg>
+
+                              {{ formPaymentList[item.form_payment].name }}
+                            </span>
+                          </dd>
+                        </dl>
                       </div>
                     </div>
                   </td>
 
-                  <td class="hidden px-3 py-4 text-sm font-mono text-slate-500 dark:text-slate-300 transition-colors lg:table-cell">
-                    {{item.status === 0 ? item.date_due.split('T')[0] : item.date_received.split('T')[0] }}
-                  </td>
+                  <td class="hidden whitespace-nowrap px-3 py-4 text-sm transition-colors lg:table-cell">
 
-                  <td class="hidden px-3 py-4 text-sm font-mono text-slate-500 dark:text-slate-300 transition-colors lg:table-cell">
-                    {{formPaymentList[item.form_payment].name}}
+                    <span
+                      class="inline-flex items-center gap-x-1.5 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset"
+                      [ngClass]="formPaymentList[item.form_payment].styles">
+
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              [attr.d]="formPaymentList[item.form_payment].icon" />
+                      </svg>
+
+                      {{ formPaymentList[item.form_payment].name }}
+                    </span>
+
                   </td>
 
                   <td class="hidden px-3 py-4 text-sm font-mono text-slate-500 dark:text-slate-300 transition-colors lg:table-cell">
@@ -263,6 +289,32 @@
 
                   <td class="hidden px-3 py-4 text-sm font-mono text-slate-500 dark:text-slate-300 transition-colors lg:table-cell">
                     {{ (item.status === 0 ? item.amount : item.bill_value) | currency:'BRL'}}
+                  </td>
+
+                  <td class="hidden whitespace-nowrap px-3 py-4 text-sm transition-colors lg:table-cell">
+
+                    <span *ngIf="item.status === 1"
+                          class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium ring-1 ring-inset
+                                 bg-emerald-50 text-emerald-700 ring-emerald-600/20
+                                 dark:bg-emerald-400/10 dark:text-emerald-400 dark:ring-emerald-400/20">
+
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                      </svg>
+                      Pago
+                    </span>
+
+                    <span *ngIf="item.status === 0"
+                          class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium ring-1 ring-inset
+                                 bg-yellow-50 text-yellow-800 ring-yellow-600/20
+                                 dark:bg-yellow-400/10 dark:text-yellow-500 dark:ring-yellow-400/20">
+
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd" />
+                      </svg>
+                      Pendente
+                    </span>
+
                   </td>
 
                   <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
@@ -366,6 +418,7 @@
                 </div>
 
                 <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+
                     <div>
                       <p class="text-sm text-slate-700 dark:text-slate-400 transition-colors">
                         Mostrando
@@ -377,7 +430,31 @@
                         resultados
                       </p>
                     </div>
-                    <div>
+
+                    <div class="flex items-center gap-x-6">
+
+                      <div class="flex items-center gap-x-2">
+                        <label for="perPage" class="text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">Por página:</label>
+
+                        <input
+                          type="number"
+                          id="perPage"
+                          list="perPageOptions"
+                          [value]="itemsPerPage"
+                          (change)="updateItemsPerPage($event)"
+                          min="1"
+                          class="block w-20 rounded-md border-0 py-1.5 pl-3 pr-2 text-slate-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6
+                                 bg-white dark:bg-slate-800 dark:text-white dark:ring-slate-600 dark:focus:ring-indigo-500 transition-colors text-center"
+                        >
+
+                        <datalist id="perPageOptions">
+                          <option value="10"></option>
+                          <option value="20"></option>
+                          <option value="50"></option>
+                          <option value="100"></option>
+                        </datalist>
+                      </div>
+
                       <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
                         <button (click)="prevPage()" [disabled]="meta.current_page === 1"
                                 class="relative inline-flex items-center rounded-l-md px-2 py-2 ring-1 ring-inset focus:z-20 focus:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed transition-colors
@@ -412,30 +489,30 @@
                   <div class="flex justify-between items-center">
                     <span class="text-slate-600 dark:text-slate-400">Recebidas (R$)</span>
                     <span class="font-bold text-emerald-600 dark:text-emerald-400">
-                      {{ financialSummary.received.value | currency:'BRL' }}
+                      {{ getTotalBillValue() | currency:'BRL' }}
                     </span>
                   </div>
 
                   <div class="flex justify-between items-center">
                     <span class="text-slate-600 dark:text-slate-400">A receber (R$)</span>
                     <span class="font-bold text-emerald-600 dark:text-emerald-400">
-                      {{ financialSummary.receivable.value | currency:'BRL' }}
+                      {{ getTotalAmount() | currency:'BRL' }}
                     </span>
                   </div>
 
                   <div class="flex justify-between items-center">
                     <span class="text-slate-600 dark:text-slate-400">Vencidas (R$)</span>
                      <span class="font-bold"
-                          [class.text-emerald-600]="financialSummary.late.value === 0"
-                          [class.text-red-600]="financialSummary.late.value > 0">
-                      {{ financialSummary.late.value | currency:'BRL' }}
+                          [class.text-emerald-600]="getTotalAmountDateDue() === '0.00'"
+                          [class.text-red-600]="getTotalAmountDateDue() !== '0.00'">
+                      {{ getTotalAmountDateDue() | currency:'BRL' }}
                     </span>
                   </div>
 
                   <div class="pt-3 border-t border-gray-100 dark:border-slate-700 flex justify-between items-center">
                     <span class="font-semibold text-slate-900 dark:text-white">Total de recebimentos (R$)</span>
                     <span class="font-bold text-slate-900 dark:text-white">
-                      {{ financialSummary.total.value | currency:'BRL' }}
+                      {{ getTotalBillValue() | currency:'BRL' }}
                     </span>
                   </div>
 

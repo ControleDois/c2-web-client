@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ServiceService } from '../../../../../core/services/service.service';
 import { catchError, map } from 'rxjs';
@@ -9,7 +9,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-service-form',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, NgxCurrencyDirective],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, NgxCurrencyDirective],
   templateUrl: './service-form.html',
 })
 export class ServiceForm {
@@ -20,7 +20,8 @@ export class ServiceForm {
     company_id: new FormControl(0),
     role: new FormControl(1, Validators.required),
     name: new FormControl('', Validators.required),
-    sale_value: new FormControl(''),
+    sale_value: new FormControl<number | null>(null),
+
   });
 
   public kinds = [
@@ -68,6 +69,8 @@ export class ServiceForm {
   }
 
   save(): void {
+
+    console.log(this.myForm.value)
     this.validateForm();
 
     if (this.myForm.valid) {

@@ -5,11 +5,11 @@ import { ServiceService } from '../../../../../core/services/service.service';
 import { catchError, map } from 'rxjs';
 import { ToastService } from '../../../../../core/services/toast.service';
 import { CommonModule } from '@angular/common';
-import { NgxCurrencyDirective } from 'ngx-currency';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-service-form',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, NgxCurrencyDirective],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, NgxMaskDirective],
   templateUrl: './service-form.html',
 })
 export class ServiceForm {

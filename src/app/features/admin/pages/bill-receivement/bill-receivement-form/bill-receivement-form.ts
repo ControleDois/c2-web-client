@@ -7,11 +7,11 @@ import { BillReceivementService } from '../../../../../core/services/bill-receiv
 import { catchError, map } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SearchLoadingUnique } from '../../../../../shared/components/search-loading-unique/search-loading-unique';
-import { NgxCurrencyDirective } from 'ngx-currency';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-bill-receivement-form',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, SearchLoadingUnique, NgxCurrencyDirective],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, SearchLoadingUnique, NgxMaskDirective],
   templateUrl: './bill-receivement-form.html',
 })
 export class BillReceivementForm {
@@ -30,14 +30,14 @@ export class BillReceivementForm {
     name: new FormControl('', Validators.required),
     date_competence: new FormControl('', Validators.required),
     date_due: new FormControl('', Validators.required),
-    amount: new FormControl(0, Validators.required),
+    amount: new FormControl(<number | null>(null), Validators.required),
     repeat: new FormControl(false, Validators.required),
     repeat_period: new FormControl(0, Validators.required),
     repeat_occurrences: new FormControl(''),
     date_received: new FormControl(''),
-    discount: new FormControl(0),
-    fees: new FormControl(0),
-    bill_value: new FormControl(0),
+    discount: new FormControl(<number | null>(null)),
+    fees: new FormControl(<number | null>(null)),
+    bill_value: new FormControl(<number | null>(null)),
     form_payment: new FormControl(9),
     note: new FormControl(''),
     status: new FormControl(0),
@@ -207,7 +207,7 @@ export class BillReceivementForm {
 
   save(): void {
 
-    console.log(this.myForm.value)
+    this.myForm.value.status = this.myForm.value.status ? 1 : 0;
     this.validateForm();
 
     if (this.myForm.valid) {

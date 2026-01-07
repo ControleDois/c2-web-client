@@ -119,7 +119,7 @@
               <div class="sm:col-span-2">
                 <label class="block text-sm font-medium leading-6 text-slate-900 dark:text-white">Valor:</label>
                 <div class="mt-2">
-                  <input currencyMask type="text" formControlName="amount" (keyup)="sumValues()" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
+                  <input mask="separator.2" thousandSeparator="." decimalSeparator="," prefix="R$ " currency="BRL" type="text" formControlName="amount" (keyup)="sumValues()" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
                 </div>
               </div>
 
@@ -250,21 +250,21 @@
               <div class="sm:col-span-1" *ngIf="myForm.value.status">
                 <label class="block text-sm font-medium leading-6 text-slate-900 dark:text-white">Descontos / Taxas:</label>
                 <div class="mt-2">
-                  <input currencyMask type="text" formControlName="discount" (keyup)="sumValues()" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
+                  <input mask="separator.2" thousandSeparator="." decimalSeparator="," prefix="R$ " currency="BRL" type="text" formControlName="discount" (keyup)="sumValues()" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
                 </div>
               </div>
 
               <div class="sm:col-span-1" *ngIf="myForm.value.status">
                 <label class="block text-sm font-medium leading-6 text-slate-900 dark:text-white">Juros / Multa:</label>
                 <div class="mt-2">
-                  <input currencyMask type="text" formControlName="fees" (keyup)="sumValues()" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
+                  <input mask="separator.2" thousandSeparator="." decimalSeparator="," prefix="R$ " currency="BRL" type="text" formControlName="fees" (keyup)="sumValues()" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
                 </div>
               </div>
 
               <div class="sm:col-span-2" *ngIf="myForm.value.status">
                 <label class="block text-sm font-medium leading-6 text-slate-900 dark:text-white">Valor recebido:</label>
                 <div class="mt-2">
-                  <input currencyMask type="text" formControlName="bill_value" (keyup)="sumValues()" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
+                  <input mask="separator.2" thousandSeparator="." decimalSeparator="," prefix="R$ " currency="BRL" type="text" formControlName="bill_value" (keyup)="sumValues()" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
                 </div>
               </div>
 

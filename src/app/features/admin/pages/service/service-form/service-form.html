@@ -28,7 +28,7 @@
           <div class="sm:col-span-2">
             <label class="block text-sm font-medium leading-6 text-slate-900 dark:text-white">Valor:</label>
             <div class="mt-2">
-              <input formControlName="sale_value" currencyMask type="text" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
+              <input formControlName="sale_value" mask="separator.2" thousandSeparator="." decimalSeparator="," prefix="R$ " currency="BRL" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset focus:outline-none transition-all sm:text-sm sm:leading-6 bg-white text-slate-900 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
             </div>
           </div>
         </div>

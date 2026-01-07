@@ -7,11 +7,10 @@ import { ToastService } from '../../../../../core/services/toast.service';
 import { catchError, map } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SearchLoadingUnique } from '../../../../../shared/components/search-loading-unique/search-loading-unique';
-import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-product-form',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, SearchLoadingUnique, NgxCurrencyDirective],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, SearchLoadingUnique],
   templateUrl: './product-form.html',
 })
 export class ProductForm implements OnInit {
@@ -27,7 +26,7 @@ export class ProductForm implements OnInit {
     brand_id: new FormControl(''),
     role: new FormControl(0, Validators.required),
     name: new FormControl('', Validators.required),
-    sale_value: new FormControl('', Validators.required),
+    sale_value: new FormControl(<number | null>(null), Validators.required),
     description: new FormControl(''),
     barcode: new FormControl(''),
     unit: new FormControl(''),

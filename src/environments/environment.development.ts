@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  name: 'ControleDois ERP (Dev)',
-  api: 'https://api.ctrix.com.br',
+  name: 'Grupo AMS Facilita (Dev)',
+  api: 'https://api.controledois.com.br',
 };

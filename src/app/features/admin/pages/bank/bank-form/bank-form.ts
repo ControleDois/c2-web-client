@@ -2,14 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { NgxCurrencyDirective } from 'ngx-currency';
 import { BankService } from '../../../../../core/services/bank.service';
 import { ToastService } from '../../../../../core/services/toast.service';
 import { catchError, map } from 'rxjs';
 
 @Component({
   selector: 'app-bank-form',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, NgxCurrencyDirective],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './bank-form.html',
 })
 export class BankForm {
@@ -19,7 +18,7 @@ export class BankForm {
     id: new FormControl(0),
     company_id: new FormControl(0),
     name: new FormControl('', Validators.required),
-    balance: new FormControl(0, Validators.required),
+    balance: new FormControl(<number | null>(null), Validators.required),
     date_balance: new FormControl(new Date().toString().split('T')[0])
   });
 
